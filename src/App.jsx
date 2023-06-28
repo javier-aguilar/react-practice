@@ -52,17 +52,24 @@ const Search = ({search, onSearch}) => (
 
 const List = ({list}) => (
     <ul>
-    {list.map((item) => (
-      <li key={item.objectID}>
-        <span>
-          <a href={item.url}>{item.title}</a>
-        </span>
-        <span>{item.author}</span>
-        <span>{item.num_comments}</span>
-        <span>{item.points}</span>
-      </li>
+    {list.map(({objectID, ...item}) => (
+      <Item
+        key = {objectID}
+        {...item}
+      />
     ))}
   </ul>
+);
+
+const Item = ({title, url, author, num_comments, points}) => (
+  <li>
+    <span>
+      <a href={url}>{title}</a>
+    </span>
+    <span>{author}</span>
+    <span>{num_comments}</span>
+    <span>{points}</span>
+  </li>
 );
 
 export default App;
